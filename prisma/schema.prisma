@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Rol {
+  OWNER    // Dueño de la tienda: acceso total
+  EMPLOYEE // Empleado: acceso limitado (sin borrar productos, sin ver márgenes, etc.)
+}
+model User {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  nombre     String
+  rol        Rol      @default(EMPLOYEE)
+  tiendaId   String
+  tienda     Tienda   @relation(fields: [tiendaId], references: [id])
+  created_at DateTime @default(now())
+
+  @@map("usuarios")
+}
+model Tienda {
+  id          String      @id @default(uuid())
+  nombre      String
+  usuarios    User[]
+  productos   Producto[]
+  ventas      Venta[]
+  proveedores Proveedor[]
+  created_at  DateTime    @default(now())
+
+  @@map("tiendas")
+}
+model Producto {
+  id               String    @id @default(uuid())
+  tiendaId         String
+  tienda           Tienda    @relation(fields: [tiendaId], references: [id])
+  nombre           String
+  categoria        String
+  stock            Int       @default(0)
+  stockMinimo      Int       @default(3)
+  precioCompra     Float
+  precioVenta      Float
+  fechaVencimiento DateTime?
+  ventas           Venta[]
+  created_at       DateTime  @default(now())
+
+  @@map("productos")
+}
+model Venta {
+  id                   String   @id @default(uuid())
+  tiendaId             String
+  tienda               Tienda   @relation(fields: [tiendaId], references: [id])
+  productoId           String
+  producto             Producto @relation(fields: [productoId], references: [id])
+  cantidad             Int
+  precioVentaUnitario  Float
+  precioCompraUnitario Float
+  margen               Float
+  totalVenta           Float
+  totalMargen          Float
+  created_at           DateTime @default(now())
+
+  @@map("ventas")
+}
+model Proveedor {
+  id         String   @id @default(uuid())
+  tiendaId   String
+  tienda     Tienda   @relation(fields: [tiendaId], references: [id])
+  nombre     String
+  telefono   String?
+  diaVisita  String?
+  created_at DateTime @default(now())
+
+  @@map("proveedores")
+}
