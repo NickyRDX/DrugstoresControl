@@ -49,7 +49,7 @@ export default function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-sm tracking-tighter text-muted-foreground font-semibold mb-2">Menú Principal</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-xs leading-relaxed tracking-tighter text-muted-foreground underline font-medium mb-2">Menú Principal</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {sidebarDato.map((item) => {
@@ -60,19 +60,30 @@ export default function AppSidebar() {
                       asChild
                       isActive={isActive}
                       tooltip={item.nombre}
-                      className={cn(
-                        "h-11 transition-all duration-200 ease-in-out",
-                        isActive 
-                          ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold" 
-                          : "hover:bg-sidebar-accent/50"
-                      )}
+                    className={cn(
+                      "h-11 transition-all duration-200 ease-in-out flex items-center group-data-[collapsible=icon]:justify-center",
+                      isActive
+                        ? "bg-primary! rounded-3xl"
+                        : "hover:bg-sidebar-accent/50",
+                    )}
+                  >
+                    <Link
+                      href={item.href}
+                      className="flex items-center size-full gap-3 px-3 group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:justify-center"
                     >
-                      <Link href={item.href} className="flex items-center-safe gap-3">
-                        <item.icon className={cn("size-6! stroke-1", isActive && "text-primary")} />
-                        <span className="text-lg text-slate-700 dark:text-slate-200 group-data-[collapsible=icon]:hidden">
-                          {item.nombre}
-                        </span>
-                      </Link>
+                      <item.icon
+                        className={cn(
+                          "size-6! stroke-1.5 shrink-0",
+                          isActive ? "text-white" : "dark:text-slate-200 text-slate-700"
+                        )}
+                      />
+                      <span className={cn(
+                        "text-base leading-tight group-data-[collapsible=icon]:hidden truncate",
+                        isActive ? "text-slate-100! dark:text-slate-200! font-normal text-lg" : "text-slate-700 dark:text-slate-200"
+                      )}>
+                        {item.nombre}
+                      </span>
+                    </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
@@ -82,14 +93,9 @@ export default function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        {/* <div className="p-2 group-data-[collapsible=icon]:hidden">
-          <div className="rounded-lg bg-sidebar-accent/50 p-3 text-xs text-muted-foreground">
-            © 2026 Drugstore Control
-          </div>
-        </div> */}
-        <Button variant='secondary' onClick={LogoutButton} className='p-2.5 cursor-pointer h-10 group-data-[collapsible=icon]:hidden'>
+        <Button variant='secondary' onClick={LogoutButton} className='p-2.5 cursor-pointer leading-relaxed tracking-tight mb-2.5 text-muted-foreground h-10 group-data-[collapsible=icon]:hidden'>
           Cerrar sesión
-          <LogInIcon className="size-4 mt-0.5"/>
+          <LogInIcon className="size-4 mt-0.5 ml-1"/>
         </Button>
       </SidebarFooter>
     </Sidebar>

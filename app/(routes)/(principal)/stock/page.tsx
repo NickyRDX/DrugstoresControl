@@ -3,6 +3,6 @@ import React from 'react'
 
 export default function StockPage() {
   return (
-    <div>StockPage</div>
+    <section className='p-4'></section>
   )
 }
