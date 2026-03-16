@@ -56,7 +56,7 @@ export default function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xs leading-relaxed tracking-tighter text-muted-foreground underline font-medium mb-2">
+          <SidebarGroupLabel className="text-xs leading-relaxed tracking-tighter text-muted-foreground cursor-default underline font-medium mb-2">
             Menú Principal
           </SidebarGroupLabel>
           <SidebarGroupContent>

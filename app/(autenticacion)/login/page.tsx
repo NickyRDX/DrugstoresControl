@@ -59,12 +59,12 @@ export default function LoginPage() {
     form.reset();
   }
   return (
-    <Card className="w-full max-w-sm shadow-lg rounded-sm border-slate-900/20 border max-h-full dark:border-slate-200/20 md:max-w-md">
+    <Card className="w-full max-w-sm shadow-lg rounded-sm border-slate-900/10 border max-h-full dark:border-slate-200/10 md:max-w-md">
       <CardHeader className="my-2">
-        <CardTitle className="text-2xl text-center font-semibold tracking-tight text-slate-700 dark:text-slate-200">
-          Iniciar sesión
+        <CardTitle className="text-2xl text-center font-semibold tracking-tight text-slate-700 dark:text-slate-200 cursor-default">
+          Iniciar sesión👍🏻
         </CardTitle>
-        <CardDescription className="text-accent-foreground my-2 text-xs text-center underline decoration-secondary-foreground">
+        <CardDescription className="text-accent-foreground my-2 cursor-default text-xs text-center underline decoration-secondary-foreground">
           Bienvenido/a a Drugstore Controls
         </CardDescription>
       </CardHeader>
@@ -89,7 +89,7 @@ export default function LoginPage() {
                   autoComplete="off"
                   type="email"
                   required
-                  className="h-12 focus-visible:ring-blue-400/70 focus-visible:border-blue-400 ring-2 ring-blue-300 w-full rounded-sm"
+                  className="h-12 focus-visible:ring-blue-400/70 focus-visible:border-blue-400 ring-2 ring-blue-300 w-full rounded-xl"
                 />
               </Field>
             )}
@@ -113,7 +113,7 @@ export default function LoginPage() {
                   autoComplete="off"
                   type="password"
                   required
-                  className="h-12 focus-visible:ring-blue-400/57 focus-visible:border-blue-400 ring-2 ring-blue-300 w-full rounded-sm"
+                  className="h-12 focus-visible:ring-blue-400/57 focus-visible:border-blue-400 ring-2 ring-blue-300 w-full rounded-xl"
                 />
               </Field>
             )}
@@ -130,6 +130,7 @@ export default function LoginPage() {
             {isLoading ? <Spinner /> : "Iniciar sesión"}
           </Button>
         </CardFooter>
+        <p className='text-center mb-3 text-pretty text-muted-foreground text-xs cursor-default tracking-tight leading-tight'>cualquier inconveniente comunicate con el dueño</p>
       </form>
     </Card>
   );

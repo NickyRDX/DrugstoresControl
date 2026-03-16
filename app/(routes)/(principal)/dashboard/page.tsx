@@ -14,7 +14,7 @@ export default function DashboardPage() {
         <CardComponent />
         <CardComponent />
       </section>
-      <section className="gap-6">
+      <section className="gap-6 min-h-full">
         <ChartAreaStacked />
       </section>
     </section>
