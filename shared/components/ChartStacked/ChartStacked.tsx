@@ -46,13 +46,13 @@ export function ChartAreaStacked() {
       <CardHeader>
         <CardTitle>Margenes de Ganancias</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Mostrando el total de margenes de ganancias de los últimos 6 meses.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="aspect-2/1 md:aspect-4/1 w-full"
+          className="aspect-2/1 md:aspect-3/1 w-full"
         >
           <AreaChart
             accessibilityLayer

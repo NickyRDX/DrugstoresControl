@@ -18,7 +18,7 @@ export default function LayoutPrincipal({ children }: LayoutPrincipalProps) {
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
-          <nav className="w-full h-14 p-5 border-b border-slate-800/20 dark:border-slate-100/30 flex justify-between items-center">
+          <nav className="w-full h-14 p-5 border-b border-slate-800/20 dark:border-slate-100/30 flex justify-between items-center sticky z-50 top-0 inset-x-0 backdrop-blur-lg overflow-hidden">
             <SidebarTrigger className="cursor-pointer" />
             <div>
               <ModeToggle />
