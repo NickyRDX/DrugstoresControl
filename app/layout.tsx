@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="es-AR" suppressHydrationWarning>
       <body className={`${geistSans.variable}  antialiased`}>
-        <ThemeProvider enableSystem attribute={`class`} defaultTheme={`system`}>
+        <ThemeProvider disableTransitionOnChange enableSystem attribute={`class`} defaultTheme={`system`}>
           <TooltipProvider>{children}</TooltipProvider>
           <Toaster position="top-center" />
         </ThemeProvider>

@@ -3,6 +3,6 @@ import React from 'react'
 
 export default function VentasPage() {
   return (
-    <div>VentasPage</div>
+    <section className="p-3">VentasPage</section>
   )
 }

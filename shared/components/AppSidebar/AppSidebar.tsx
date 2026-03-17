@@ -45,10 +45,10 @@ export default function AppSidebar() {
             />
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
-            <span className="truncate font-semibold text-slate-700 dark:text-slate-200 tracking-tight text-base">
+            <span className="truncate font-semibold cursor-default text-slate-700 dark:text-slate-200 tracking-tight text-base">
               Drugstore Controls
             </span>
-            <span className="truncate text-xs text-muted-foreground font-medium">
+            <span className="truncate text-xs cursor-default text-muted-foreground font-medium">
               Control Panel
             </span>
           </div>
@@ -72,7 +72,7 @@ export default function AppSidebar() {
                       className={cn(
                         "h-11 transition-all duration-200 ease-in-out flex items-center group-data-[collapsible=icon]:justify-center",
                         isActive
-                          ? "bg-primary! rounded-full"
+                          ? "bg-primary! rounded-md"
                           : "hover:bg-sidebar-accent/50",
                       )}
                     >

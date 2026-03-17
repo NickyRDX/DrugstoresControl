@@ -3,6 +3,6 @@ import React from 'react'
 
 export default function ProveedoresPage() {
   return (
-    <div>ProveedoresPage</div>
+    <section className="p-3">ProveedoresPage</section>
   )
 }

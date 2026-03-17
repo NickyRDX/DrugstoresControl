@@ -1,8 +1,6 @@
 "use client";
-import React from 'react'
+import React from "react";
 
 export default function EmpleadosPage() {
-  return (
-    <div>EmpleadosPage</div>
-  )
+  return <section className="p-3">EmpleadosPage</section>;
 }

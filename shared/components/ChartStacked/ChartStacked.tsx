@@ -42,7 +42,7 @@ const chartConfig = {
 
 export function ChartAreaStacked() {
   return (
-    <Card className="border-muted-foreground/10 border-solid border">
+    <Card className="border-muted-foreground/10 rounded-sm border-solid border">
       <CardHeader>
         <CardTitle>Margenes de Ganancias</CardTitle>
         <CardDescription>

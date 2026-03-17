@@ -38,7 +38,7 @@ export default function LayoutPrincipal({ children }: LayoutPrincipalProps) {
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem>
-                    <BreadcrumbLink href="/dashboard">Inicio</BreadcrumbLink>
+                    <BreadcrumbLink className="cursor-default" href="/dashboard">Inicio</BreadcrumbLink>
                   </BreadcrumbItem>
                   {segments.map((segment, index) => {
                     const href = "/" + segments.slice(0, index + 1).join("/");
@@ -51,7 +51,7 @@ export default function LayoutPrincipal({ children }: LayoutPrincipalProps) {
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
                           {isLast ? (
-                            <BreadcrumbPage>{label}</BreadcrumbPage>
+                            <BreadcrumbPage className="cursor-default">{label}</BreadcrumbPage>
                           ) : (
                             <BreadcrumbLink href={href}>{label}</BreadcrumbLink>
                           )}
