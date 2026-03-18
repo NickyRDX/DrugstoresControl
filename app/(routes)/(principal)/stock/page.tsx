@@ -56,25 +56,25 @@ export default function StockPage() {
         </Button>
       </div>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="border-muted-foreground/20 border rounded-sm min-w-[400px] md:min-w-[600px]">
+        <DialogContent className="border-muted-foreground/20 border rounded-sm w-[95vw] max-w-[700px] max-h-[95vh] overflow-y-hidden sm:rounded-lg">
           <DialogHeader>
-            <DialogTitle className="text-base text-slate-700 dark:text-slate-200">
-              Listo para agregar un producto
+            <DialogTitle className="text-xl font-bold text-slate-700 dark:text-slate-200">
+              Agregar Nuevo Producto
             </DialogTitle>
           </DialogHeader>
           <form
             id="form-rhf-demo"
             onSubmit={ProductForm.handleSubmit(onSubmit)}
-            className="flex flex-col space-y-6 gap-1 md:space-y-12 p-1 md:p-3"
+            className="flex flex-col gap-6 p-1 md:p-2"
           >
-            <FieldGroup>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Controller
                 name="nombre"
                 control={ProductForm.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
+                  <Field data-invalid={fieldState.invalid} className="md:col-span-2">
                     <FieldLabel
-                      className="text-sm leading-tight text-muted-foreground tracking-tight"
+                      className="text-sm font-medium text-muted-foreground"
                       htmlFor="form-rhf-demo-nombre"
                     >
                       Nombre del producto
@@ -82,7 +82,7 @@ export default function StockPage() {
                     <Input
                       {...field}
                       id="form-rhf-demo-nombre"
-                      className="p-3 h-12 border-none focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-lg"
+                      className="h-10 border-muted-foreground/20 focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-md"
                       type="text"
                       autoComplete="off"
                       required
@@ -95,9 +95,9 @@ export default function StockPage() {
                 name="categoria"
                 control={ProductForm.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
+                  <Field data-invalid={fieldState.invalid} className="md:col-span-2">
                     <FieldLabel
-                      className="text-sm leading-tight text-muted-foreground tracking-tight"
+                      className="text-sm font-medium text-muted-foreground"
                       htmlFor="form-rhf-demo-categoria"
                     >
                       Categoría del producto
@@ -109,7 +109,7 @@ export default function StockPage() {
                       autoComplete="off"
                       required
                       placeholder="Ej: Bebidas, Snacks, etc."
-                      className="p-3 h-12 border-none focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-lg"
+                      className="h-10 border-muted-foreground/20 focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-md"
                     />
                   </Field>
                 )}
@@ -120,10 +120,10 @@ export default function StockPage() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel
-                      className="text-sm leading-tight text-muted-foreground tracking-tight"
+                      className="text-sm font-medium text-muted-foreground"
                       htmlFor="form-rhf-demo-stock"
                     >
-                      Stock adquierido
+                      Stock
                     </FieldLabel>
                     <Input
                       {...field}
@@ -131,51 +131,7 @@ export default function StockPage() {
                       type="number"
                       autoComplete="off"
                       required
-                      className="p-3 h-12 border-none focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-lg"
-                    />
-                  </Field>
-                )}
-              />
-              <Controller
-                name="precioCompra"
-                control={ProductForm.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel
-                      className="text-sm leading-tight text-muted-foreground tracking-tight"
-                      htmlFor="form-rhf-demo-precioCompra"
-                    >
-                      Precio de compra
-                    </FieldLabel>
-                    <Input
-                      {...field}
-                      id="form-rhf-demo-precioCompra"
-                      type="number"
-                      autoComplete="off"
-                      required
-                      className="p-3 h-12 border-none focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-lg"
-                    />
-                  </Field>
-                )}
-              />
-              <Controller
-                name="precioVenta"
-                control={ProductForm.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel
-                      className="text-sm leading-tight text-muted-foreground tracking-tight"
-                      htmlFor="form-rhf-demo-precioVenta"
-                    >
-                      Precio de venta
-                    </FieldLabel>
-                    <Input
-                      {...field}
-                      id="form-rhf-demo-precioVenta"
-                      type="number"
-                      autoComplete="off"
-                      required
-                      className="p-3 h-12 border-none focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-lg"
+                      className="h-10 border-muted-foreground/20 focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-md"
                     />
                   </Field>
                 )}
@@ -186,7 +142,7 @@ export default function StockPage() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel
-                      className="text-sm leading-tight text-muted-foreground tracking-tight"
+                      className="text-sm font-medium text-muted-foreground"
                       htmlFor="form-rhf-demo-fechaVencimiento"
                     >
                       Fecha de vencimiento
@@ -194,7 +150,7 @@ export default function StockPage() {
                     <Input
                       type="date"
                       id="form-rhf-demo-fechaVencimiento"
-                      className="p-3 h-12 focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-lg border-none"
+                      className="h-10 border-muted-foreground/20 focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-md"
                       required
                       value={
                         field.value
@@ -215,14 +171,61 @@ export default function StockPage() {
                   </Field>
                 )}
               />
-            </FieldGroup>
-            <Button
-              form="form-rhf-demo"
-              type="submit"
-              className="w-full cursor-pointer h-12 text-base leading-0 tracking-tighter"
-            >
-              Guardar
-            </Button>
+              <Controller
+                name="precioCompra"
+                control={ProductForm.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel
+                      className="text-sm font-medium text-muted-foreground"
+                      htmlFor="form-rhf-demo-precioCompra"
+                    >
+                      Precio de compra
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id="form-rhf-demo-precioCompra"
+                      type="number"
+                      autoComplete="off"
+                      required
+                      className="h-10 border-muted-foreground/20 focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-md"
+                    />
+                  </Field>
+                )}
+              />
+              <Controller
+                name="precioVenta"
+                control={ProductForm.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel
+                      className="text-sm font-medium text-muted-foreground"
+                      htmlFor="form-rhf-demo-precioVenta"
+                    >
+                      Precio de venta
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id="form-rhf-demo-precioVenta"
+                      type="number"
+                      autoComplete="off"
+                      required
+                      className="h-10 border-muted-foreground/20 focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-md"
+                    />
+                  </Field>
+                )}
+              />
+            </div>
+            <div className="flex justify-end gap-3 mt-4">
+              
+              <Button
+                form="form-rhf-demo"
+                type="submit"
+                className="h-10 cursor-pointer px-8 font-semibold w-full"
+              >
+                Guardar Producto
+              </Button>
+            </div>
           </form>
         </DialogContent>
       </Dialog>
