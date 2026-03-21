@@ -7,11 +7,11 @@ export type Producto = {
   stockMinimo: number;
   precioCompra: number;
   precioVenta: number;
-  fechaVencimiento: Date | null;
+  fechaIngresado: Date | null;
   created_at: Date;
 };
 
-export type ProductoFormData = Omit<Producto, "id" | "tiendaId" | "created_at">;
+export type ProductoFormDato = Omit<Producto, "id" | "tiendaId" | "created_at">;
 
 export type ProductoConMargen = Producto & {
   margen: number;

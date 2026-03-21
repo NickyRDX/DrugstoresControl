@@ -19,6 +19,8 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { productFormSchema, ProductFormData } from "@/types/product.data";
+import { crearProducto } from "@/action/product";
+import { ProductoFormDato } from "@/types"; 
 import {
   Select,
   SelectContent,
@@ -28,7 +30,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-export default function StockPage() {
+import { toast } from "sonner";
+export default function StockPage({productos} : {productos: ProductoFormDato[]}) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [cargando, setCargando] = useState<boolean>(false)
   const ProductForm = useForm<ProductFormData>({
@@ -43,10 +46,16 @@ export default function StockPage() {
     },
   });
   async function onSubmit(data: ProductFormData) {
-    setCargando(true)
     console.log(data);
-    const formDato = new FormData();
-    console.log(formDato);
+    setCargando(true)
+    const resultado = await crearProducto(data)
+    if(!resultado.ok){
+      toast.success("producto creado correctamente✅")
+      ProductForm.reset()
+      setIsOpen(false)
+    } else{
+      toast.error("Error al crear el producto❌")
+    }
     setCargando(false)
   }
   return (
