@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/select";
 export default function StockPage() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [cargando, setCargando] = useState<boolean>(false)
   const ProductForm = useForm<ProductFormData>({
     resolver: zodResolver(productFormSchema),
     defaultValues: {
@@ -38,18 +39,22 @@ export default function StockPage() {
       stock: 0,
       precioCompra: 0,
       precioVenta: 0,
-      fechaVencimiento: undefined,
+      fechaIngresado: undefined,
     },
   });
   async function onSubmit(data: ProductFormData) {
+    setCargando(true)
     console.log(data);
+    const formDato = new FormData();
+    console.log(formDato);
+    setCargando(false)
   }
   return (
     <section className="p-3 w-full">
       <div className="flex justify-end">
         <Button
           onClick={() => setIsOpen(true)}
-          className="w-fit h-10 cursor-pointer text-sm font-semibold rounded-sm text-slate-200 leading-tight tracking-tight"
+          className="w-fit h-10 cursor-pointer text-sm font-semibold rounded-sm text-slate-200 leading-tight tracking-tighter"
         >
           Agregar Producto
           <PlusCircleIcon className="size-4 stroke-3" />
@@ -58,7 +63,7 @@ export default function StockPage() {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="border-muted-foreground/20 border rounded-sm w-[95vw] max-w-[700px] max-h-[95vh] overflow-y-hidden sm:rounded-lg">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-slate-700 dark:text-slate-200">
+            <DialogTitle className="text-lg font-semibold tracking-tight text-slate-700 dark:text-slate-200 cursor-default">
               Agregar Nuevo Producto
             </DialogTitle>
           </DialogHeader>
@@ -100,7 +105,7 @@ export default function StockPage() {
                       className="text-sm font-medium text-muted-foreground"
                       htmlFor="form-rhf-demo-categoria"
                     >
-                      Categoría del producto
+                      Categoría
                     </FieldLabel>
                     <Input
                       {...field}
@@ -137,19 +142,19 @@ export default function StockPage() {
                 )}
               />
               <Controller
-                name="fechaVencimiento"
+                name="fechaIngresado"
                 control={ProductForm.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel
                       className="text-sm font-medium text-muted-foreground"
-                      htmlFor="form-rhf-demo-fechaVencimiento"
+                      htmlFor="form-rhf-demo-fechaIngresado"
                     >
-                      Fecha de vencimiento
+                      Fecha de Ingreso
                     </FieldLabel>
                     <Input
                       type="date"
-                      id="form-rhf-demo-fechaVencimiento"
+                      id="form-rhf-demo-fechaIngresado"
                       className="h-10 border-muted-foreground/20 focus-visible:ring-blue-400/50 focus-visible:border-blue-400 ring-1 w-full rounded-md"
                       required
                       value={
@@ -227,6 +232,7 @@ export default function StockPage() {
               </Button>
             </div>
           </form>
+          <span className='text-xs cursor-default -mt-2 text-muted-foreground text-center'>precio de venta definido por el dueño</span>
         </DialogContent>
       </Dialog>
     </section>
