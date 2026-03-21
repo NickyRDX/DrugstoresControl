@@ -19,21 +19,34 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { productFormSchema, ProductFormData } from "@/types/product.data";
-import { crearProducto } from "@/action/product";
-import { ProductoFormDato } from "@/types"; 
+import { crearProducto, obtenerProductos } from "@/action/product";
+import { ProductoFormDato } from "@/types";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { toast } from "sonner";
-export default function StockPage({productos} : {productos: ProductoFormDato[]}) {
+
+type ProductoPros = {
+  id: string;
+  nombre: string;
+  categoria: string;
+  stock: number;
+  stockMinimo: number;
+  precioCompra: number;
+  precioVenta: number;
+  fechaIngresado: Date | null;
+}
+
+export default function StockPage() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [cargando, setCargando] = useState<boolean>(false)
+  const [cargando, setCargando] = useState<boolean>(false);
+  const [productos, setProductos] = useState<ProductoPros[]>([])
   const ProductForm = useForm<ProductFormData>({
     resolver: zodResolver(productFormSchema),
     defaultValues: {
@@ -45,18 +58,26 @@ export default function StockPage({productos} : {productos: ProductoFormDato[]})
       fechaIngresado: undefined,
     },
   });
+
+  // funcion para  cargar productos del servidor
+  async function cargarProductos(){
+    const resultado = await obtenerProductos();
+    if(resultado.ok){
+      setProductos(resultado.productos)
+    }
+  }
   async function onSubmit(data: ProductFormData) {
     console.log(data);
-    setCargando(true)
-    const resultado = await crearProducto(data)
-    if(!resultado.ok){
-      toast.success("producto creado correctamente✅")
-      ProductForm.reset()
-      setIsOpen(false)
-    } else{
-      toast.error("Error al crear el producto❌")
+    setCargando(true);
+    const resultado = await crearProducto(data);
+    if (resultado.ok) {
+      toast.success("producto creado correctamente✅");
+      ProductForm.reset();
+      setIsOpen(false);
+    } else {
+      toast.error("Error al crear el producto❌");
     }
-    setCargando(false)
+    setCargando(false);
   }
   return (
     <section className="p-3 w-full">
@@ -86,7 +107,10 @@ export default function StockPage({productos} : {productos: ProductoFormDato[]})
                 name="nombre"
                 control={ProductForm.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="md:col-span-2">
+                  <Field
+                    data-invalid={fieldState.invalid}
+                    className="md:col-span-2"
+                  >
                     <FieldLabel
                       className="text-sm font-medium text-muted-foreground"
                       htmlFor="form-rhf-demo-nombre"
@@ -109,7 +133,10 @@ export default function StockPage({productos} : {productos: ProductoFormDato[]})
                 name="categoria"
                 control={ProductForm.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="md:col-span-2">
+                  <Field
+                    data-invalid={fieldState.invalid}
+                    className="md:col-span-2"
+                  >
                     <FieldLabel
                       className="text-sm font-medium text-muted-foreground"
                       htmlFor="form-rhf-demo-categoria"
@@ -231,7 +258,6 @@ export default function StockPage({productos} : {productos: ProductoFormDato[]})
               />
             </div>
             <div className="flex justify-end gap-3 mt-4">
-              
               <Button
                 form="form-rhf-demo"
                 type="submit"
@@ -241,7 +267,9 @@ export default function StockPage({productos} : {productos: ProductoFormDato[]})
               </Button>
             </div>
           </form>
-          <span className='text-xs cursor-default -mt-2 text-muted-foreground text-center'>precio de venta definido por el dueño</span>
+          <span className="text-xs cursor-default -mt-2 text-muted-foreground text-center">
+            precio de venta definido por el dueño
+          </span>
         </DialogContent>
       </Dialog>
     </section>

@@ -138,7 +138,7 @@ export async function obtenerProductos(){
         stockMinimo: true,
         precioCompra: true,
         precioVenta: true,
-        fechaVencimiento: true,
+        fechaIngresado: true,
         created_at: true,
       },
     });
